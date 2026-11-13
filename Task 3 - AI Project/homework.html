@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>მინი ვიქტორინა / ქვიზი</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Canvas Confetti CDN (Fireworks ეფექტისთვის) -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Georgian:wght@400;600;700&display=swap');
+        body {
+            font-family: 'Noto Sans Georgian', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen flex flex-col items-center justify-center p-4 selection:bg-indigo-500 selection:text-white">
+
+    <div class="w-full max-w-xl">
+        <!-- სათაური -->
+        <header class="text-center mb-8">
+            <h1 class="text-3xl md:text-4xl font-bold bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+                მინი ვიქტორინა / ქვიზი
+            </h1>
+            <p class="text-slate-400 text-sm mt-2">შეამოწმე შენი ცოდნა — თითო სწორი პასუხი = 5 ქულა</p>
+        </header>
+
+        <!-- კითხვის ბარათი -->
+        <main id="quiz-card" class="bg-slate-800/80 backdrop-blur-sm border border-slate-700/80 rounded-2xl p-6 md:p-8 shadow-2xl transition-all duration-300">
+            
+            <!-- პროგრესის ზოლი და კითხვის ნომერი -->
+            <div class="mb-6">
+                <div class="flex justify-between items-center text-xs font-semibold text-slate-400 mb-2">
+                    <span id="question-counter">კითხვა 1 / 10</span>
+                    <span id="progress-percent">10%</span>
+                </div>
+                <div class="w-full bg-slate-700 h-2 rounded-full overflow-hidden">
+                    <div id="progress-bar" class="bg-indigo-500 h-full transition-all duration-500 ease-out" style="width: 10%"></div>
+                </div>
+            </div>
+
+            <!-- კითხვის ტექსტი -->
+            <h2 id="question-text" class="text-xl md:text-2xl font-semibold text-white mb-6 leading-relaxed">
+                იტვირთება კითხვა...
+            </h2>
+
+            <!-- 4 სავარაუდო პასუხის ღილაკი -->
+            <div id="options-container" class="space-y-3">
+                <!-- ღილაკები ჩაიტვირთება JavaScript-იდან -->
+            </div>
+
+            <!-- შემდეგი კითხვის ღილაკი -->
+            <div class="mt-6 flex justify-end">
+                <button id="next-btn" class="hidden px-6 py-2.5 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold rounded-xl shadow-lg shadow-indigo-500/30 transition-all duration-200 active:scale-95">
+                    შემდეგი კითხვა →
+                </button>
+            </div>
+        </main>
+
+        <!-- საბოლოო შედეგის ბარათი (დამალულია დასრულებამდე) -->
+        <section id="result-card" class="hidden bg-slate-800/80 backdrop-blur-sm border border-slate-700/80 rounded-2xl p-8 shadow-2xl text-center">
+            <div class="w-20 h-20 mx-auto mb-4 rounded-full bg-indigo-500/20 border border-indigo-500/40 flex items-center justify-center text-4xl">
+                🏆
+            </div>
+            <h2 class="text-2xl md:text-3xl font-bold text-white mb-2">ქვიზი დასრულდა!</h2>
+            <p id="result-message" class="text-slate-400 mb-6">შესანიშნავი შედეგია!</p>
+            
+            <div class="bg-slate-900/80 border border-slate-700 rounded-xl p-5 mb-6 inline-block min-w-[240px]">
+                <p class="text-sm text-slate-400 uppercase tracking-wider mb-1">საბოლოო ქულა</p>
+                <p class="text-4xl font-bold text-emerald-400">
+                    <span id="final-score">0</span> <span class="text-lg text-slate-500">/ 50</span>
+                </p>
+                <p id="correct-answers-summary" class="text-xs text-slate-400 mt-2">სწორი პასუხი: 0 / 10</p>
+            </div>
+
+            <div>
+                <button id="restart-btn" class="px-8 py-3 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold rounded-xl shadow-lg shadow-indigo-500/30 transition-all duration-200 active:scale-95">
+                    თავიდან დაწყება ↻
+                </button>
+            </div>
+        </section>
+
+        <!-- ქვედა ცალკე სექცია ქულებისთვის -->
+        <footer id="score-footer" class="mt-6 bg-slate-800/60 border border-slate-700/70 rounded-2xl p-4 px-6 flex items-center justify-between shadow-lg">
+            <div class="flex items-center gap-3">
+                <div class="w-3 h-3 rounded-full bg-emerald-400 animate-pulse"></div>
+                <span class="text-slate-300 font-medium">მიმდინარე ქულა:</span>
+            </div>
+            <div class="flex items-baseline gap-1">
+                <span id="current-score" class="text-2xl font-bold text-emerald-400">0</span>
+                <span class="text-sm text-slate-400 font-semibold">/ 50 ქულა</span>
+            </div>
+        </footer>
+    </div>
+
+    <!-- ცალკე JavaScript ფაილი -->
+    <script src="homework.js"></script>
+</body>
+</html>
